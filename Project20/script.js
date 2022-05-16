@@ -42,6 +42,7 @@ function checkNumber(msg) {
   if (num === randomNum) {
     document.body.innerHTML = `<h2>Congrats! You have guessed the right number: ${num}</h2>
     <button class="play-again" id="play-again">Play Again</button>
+    <button class="play-again" id="quit">Quit</button>
     `;
   } else if (num > randomNum) {
     msgEl.innerHTML += '<div>Go Lower</div>';
