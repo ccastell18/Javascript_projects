@@ -80,7 +80,7 @@ function drawBrick() {
     column.forEach((brick) => {
       ctx.beginPath();
       ctx.rect(brick.x, brick.y, brick.w, brick.h);
-      ctx.fillStyle = brick.visible ? '0995dd' : 'transparent';
+      ctx.fillStyle = brick.visible ? '#0995dd' : 'transparent';
       ctx.fill();
       ctx.closePath();
     });
@@ -134,9 +134,27 @@ function moveBall() {
         ) {
           ball.dy *= -1;
           brick.visible = false;
+          increaseScore();
         }
       }
     });
+  });
+  if (ball.y + ball.size > canvas.height) {
+    showAllBricks();
+    score = 0;
+  }
+}
+
+function increaseScore() {
+  score++;
+  if (score % (brickRowCount * brickRowCount) === 0) {
+    showAllBricks();
+  }
+}
+
+function showAllBricks() {
+  bricks.forEach((column) => {
+    column.forEach((brick) => (brick.visible = true));
   });
 }
 
